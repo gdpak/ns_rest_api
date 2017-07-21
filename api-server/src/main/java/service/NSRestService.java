@@ -52,7 +52,6 @@ public class NSRestService {
 	@GET
 	@Path("/vl/{name}")
 	public Response get(@PathParam("name") int id, @QueryParam("type") String type) {
-		System.out.println("id = "+ id);
 		VirtualLink vl = VirtualLinkManager.find(id);
 		if (vl == null)
 			throw new NotFoundException();

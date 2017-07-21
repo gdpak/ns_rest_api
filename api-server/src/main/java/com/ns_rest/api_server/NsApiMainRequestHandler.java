@@ -67,10 +67,14 @@ public class NsApiMainRequestHandler {
 		ServletHolder jerseyServlet = context.addServlet(
 				org.glassfish.jersey.servlet.ServletContainer.class, "/*");
 		jerseyServlet.setInitOrder(0);
+		
+		jerseyServlet.setInitParameter(
+				"jersey.config.server.provider.classnames", 
+				"org.glassfish.jersey.jackson.JacksonFeature");
 		jerseyServlet.setInitParameter(
 				"jersey.config.server.provider.classnames", 
 				NSRestService.class.getCanonicalName());
- 
+		
 		server.setHandler(context);
 		server.start();
 		server.setStopAtShutdown(true);

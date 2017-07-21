@@ -19,10 +19,10 @@ public class VirtualLink {
 	Date time_created;
 	
 	public VirtualLink() {
-		super();
+		//super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public VirtualLink(int id, String subnet_assigned, String ip_profile, int cloud_tenant_id, int ns_id,
 			int state, int prev_state, Date time_created) {
 		super();
