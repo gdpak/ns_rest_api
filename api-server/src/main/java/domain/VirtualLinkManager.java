@@ -25,24 +25,44 @@ public class VirtualLinkManager {
 	}
 	
 	/*
-	 * Get one specified VL
+	 * @GET - Get one specified VL
 	 */
 	public static VirtualLink find(int id) {
 		final Optional<VirtualLink> vl = Vldb.stream()
 				.filter(VirtualLink -> VirtualLink.getId() == id).findFirst();
 		return vl.orElse(null);
 	}
+	/*
+	 * @POST - Add a VL 
+	 */
 	
 	public static void add(VirtualLink vl) {
 		Vldb.add(vl);
 	}
-	
+
 	/*
-	 * Delete a VL 
+	 * @DELETE - Delete a VL 
 	 */
 	public static void delete(int id) {
 		VirtualLink vl = find(id);
 		Vldb.remove(vl);
+	}
+	
+	/*
+	 * @PUT - Update a VL
+	 */
+	public static VirtualLink update(VirtualLink vl) {
+		final Optional<VirtualLink> vl_origin = Vldb.stream()
+				.filter(VirtualLink -> VirtualLink.getId() == vl.getId()).findFirst();
+		if (vl_origin == null) {
+			return null;
+		}
+		/*
+		 * Delete the old VL
+		 */
+		delete(vl_origin.get().getId());
+		add(vl);
+		return vl;
 	}
 	
 
